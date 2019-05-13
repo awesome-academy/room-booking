@@ -31,7 +31,6 @@ controllers:
     bed_details:
       pag: 10
 
-
   manager:
     rooms:
       page: 5

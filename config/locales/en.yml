@@ -341,6 +341,12 @@ en:
   locations:
     show:
       reviews: "Reviews"
+    index:
+      popular_destinations: "Popular Destinations"
+      we_all: "We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, day to."
+    location:
+      view_on_map: "View on map"
+      reviews: "Reviews"
 
   reviews:
     form:
