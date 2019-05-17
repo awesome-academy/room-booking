@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_05_16_011910) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "pictures"
+    t.boolean "status", default: true
     t.index ["bed_detail_id"], name: "index_rooms_on_bed_detail_id"
     t.index ["location_id"], name: "index_rooms_on_location_id"
   end

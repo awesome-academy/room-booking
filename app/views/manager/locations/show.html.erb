@@ -16,7 +16,6 @@
         <p><%= t ".created_at" %>: <%= l @location.created_at, format: :full %></p>
         <p><%= t ".updated_at" %>: <%= l @location.updated_at, format: :full %></p>
       </address>
-      <%= button_tag t(".del_but"), class: "btn btn-danger btn-sm float-right ml-1", data: {toggle: "modal", target: "#deleteModal"} %>
       <%= link_to t(".edit_but"), edit_manager_location_path(@location), class: "btn btn-primary btn-sm float-right" %>
     </div>
   </div>

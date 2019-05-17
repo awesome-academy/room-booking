@@ -3,6 +3,14 @@ en:
     formats:
       full: "%H:%M-%d/%m/%Y"
 
+  decorators:
+    location:
+      activated: "Activated"
+      non_activated: "Non Activated"
+    room:
+      activated: "Activated"
+      non_activated: "Non Activated"
+
   layouts:
     admin:
       application:
@@ -219,6 +227,7 @@ en:
         location_id: "Location ID"
         created_at: "Create at"
         update_at: "Update at"
+        status: "Status"
         image: "Image"
         action: "Action"
         edit: "Edit"
@@ -252,7 +261,7 @@ en:
         edit_but: "Edit"
       modal:
         confirm: "Are you sure?"
-        del: "Delete"
+        del: "Yes"
         cancel: "Cancel"
       form:
         form_name: "Name"
@@ -266,6 +275,8 @@ en:
         form_quantity: "Quantity"
         form_price: "Price"
         form_cancel: "Cancel"
+        form_bed_detail: "Bed detail"
+        form_services: "Services"
         enter_name: "Enter name"
         enter_location_id: "Enter location id"
         enter_bed_detail_id: "Enter bed detail id"
@@ -321,7 +332,7 @@ en:
         cancel: "Cancel"
       form:
         form_name: "Name"
-        form_location_type_id: "Location type ID"
+        form_location_type: "Location type"
         form_user_id: "User ID"
         form_location: "Location"
         form_national: "National"
@@ -329,6 +340,8 @@ en:
         form_description: "Description"
         form_status: "Status"
         form_cancel: "Cancel"
+        form_upload_img: "Upload Image"
+        form_upload: "Upload"
         enter_name: "Enter name"
         enter_location_type_id: "Enter location type id"
         enter_user_id: "Enter user id"

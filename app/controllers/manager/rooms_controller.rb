@@ -1,27 +1,29 @@
 class Manager::RoomsController < Manager::ApplicationController
+  before_action :load_location
   before_action :load_room, except: %i(new index create search)
 
   def index
-    @rooms= Room.list.page(params[:page]).per Settings.page
+    @rooms = @location.rooms.list.page(params[:page]).per Settings.page
   end
 
   def show; end
 
   def search
-    @rooms = SearchService.new(Room,search_params,Settings.search_fields.room).all_records
+    @rooms = SearchService.new(@location.rooms,search_params,Settings.search_fields.room).all_records
       .page(params[:page]).per Settings.page
     render :index
   end
 
   def new
-    @room = Room.new
+    @room = @location.rooms.new
   end
 
   def create
-    @room = Room.new room_params
+    @room = @location.rooms.new room_params.except(:services)
+    @room.services << Service.find(filter_blank_attributes room_params[:services])
     if @room.save
       flash[:success] = t(".created")
-      redirect_to manager_rooms_path
+      redirect_to manager_location_rooms_path
     else
       flash[:error] = t(".create_unsuccess")
       render :new
@@ -33,24 +35,9 @@ class Manager::RoomsController < Manager::ApplicationController
   def update
     if @room.update room_params
       flash[:success] = t(".room_updated")
-      redirect_to manager_rooms_path
+      redirect_to manager_location_rooms_path
     else
       render :edit
-    end
-  end
-
-  def destroy
-    if @room.reservation_details.any?
-      flash[:danger] = t(".room_had_reservation_detail")
-      redirect_to request.referrer
-    else
-      if @room.destroy
-        flash[:success] = t(".room_deleted")
-        redirect_to request.referrer
-      else
-        flash[:error] = t(".room_failed")
-        redirect_to manager_rooms_path
-      end
     end
   end
 
@@ -64,10 +51,21 @@ class Manager::RoomsController < Manager::ApplicationController
     params.slice :content, :field
   end
 
+  def load_location
+    @location = Location.find_by id: params[:location_id]
+    return if @location
+    flash[:error] = t(".location_not_found")
+    redirect_to manager_locations_path
+  end
+
   def load_room
-    @room = Room.find_by id: params[:id]
+    @room = @location.rooms.find_by id: params[:id]
     return if @room
     flash[:error] = t(".room_not_found")
-    redirect_to manager_rooms_path
+    redirect_to manager_location_rooms_path
+  end
+
+  def filter_blank_attributes array
+    array.reject { |e| e.to_s.empty? }
   end
 end
