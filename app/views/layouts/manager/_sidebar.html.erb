@@ -15,39 +15,30 @@
         </div>
       </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#rooms" aria-expanded="false" aria-controls="rooms">
-        <i class="menu-icon mdi mdi-home-map-marker"></i>
-        <span class="menu-title"><%= t ".rooms" %></span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="rooms">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <%= link_to t(".list_room"), manager_rooms_path, class: "nav-link"  %>
-          </li>
-          <li class="nav-item">
-            <%= link_to t(".create_room"), new_manager_room_path, class: "nav-link"  %>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#locations" aria-expanded="false" aria-controls="locations">
-        <i class="menu-icon mdi mdi-city"></i>
-        <span class="menu-title"><%= t ".locations" %></span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="locations">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <%= link_to t(".list_location"), manager_locations_path, class: "nav-link"  %>
-          </li>
-          <li class="nav-item">
-            <%= link_to t(".create_location"), new_manager_location_path, class: "nav-link"  %>
-          </li>
-        </ul>
-      </div>
-    </li>
+    <% if @location&.id %>
+      <li class="nav-item">
+        <%= link_to  manager_location_path(@location), class: "nav-link" do %>
+          <i class="menu-icon mdi mdi-city"></i>
+          <span class="menu-title"><%= t ".locations" %></span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#rooms" aria-expanded="false" aria-controls="rooms">
+          <i class="menu-icon mdi mdi-home-map-marker"></i>
+          <span class="menu-title"><%= t ".rooms" %></span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="rooms">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <%= link_to t(".list_room"), manager_location_rooms_path(@location), class: "nav-link"  %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t(".create_room"), new_manager_location_room_path(@location), class: "nav-link"  %>
+            </li>
+          </ul>
+        </div>
+      </li>
+    <% end %>
   </ul>
 </nav>

@@ -13,11 +13,15 @@
 //= require jquery
 //= require popper
 //= require bootstrap
+//= require admin/vendor.bundle.base
+//= require admin/vendor.bundle.addons
 //= require admin/shared/off-canvas
 //= require admin/shared/hoverable-collapse
 //= require admin/shared/misc
 //= require admin/shared/settings
 //= require admin/shared/todolist
+//= require admin/shared/file-upload
+//= require admin/shared/select2
 //= require i18n
 //= require i18n.js
 //= require i18n/translations

@@ -1,23 +1,22 @@
 <%= provide :title, @room.name %>
 
-<%= render "manager/rooms/modal" %>
 <div class="row">
   <div class="col-12 card">
     <div class="card-body">
       <address>
-        <p class="font-weight-bold"><%= @room.name %></br>
-          <%= @room.price %></br> <%= @room.occupancy_limit %>
-          <%= (0...@room.pictures.count).each do |picture| %>
-          <div class="picture_medium">
-            <%= image_tag(@room.pictures[picture].url, class: "full_picture_auto")%>
-          </div>
+        <p class="font-weight-bold"><%= @room.name %></p>
+          <i class="mdi mdi-account-multiple"></i> <%= @room.occupancy_limit %>
+          <i class="mdi mdi-account-multiple"></i> <%= @room.price %>
+          <% @room.pictures.each do |picture| %>
+            <div class="picture_medium">
+              <%= image_tag(picture.url, class: "full_picture_auto")%>
+            </div>
           <% end %>
-          </p>
+
         <p><%= t ".created_at" %>: <%= l @room.created_at, format: :full %></p>
         <p><%= t ".updated_at" %>: <%= l @room.updated_at, format: :full %></p>
       </address>
-      <%= button_tag t(".del_but"), class: "btn btn-danger btn-sm float-right ml-1", data: {toggle: "modal", target: "#deleteModal"} %>
-      <%= link_to t(".edit_but"), edit_manager_room_path(@room), class: "btn btn-primary btn-sm float-right" %>
+      <%= link_to t(".edit_but"), edit_manager_location_room_path(@location, @room), class: "btn btn-primary btn-sm float-right" %>
     </div>
   </div>
 </div>

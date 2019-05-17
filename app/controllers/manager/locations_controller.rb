@@ -1,27 +1,17 @@
 class Manager::LocationsController < Manager::ApplicationController
-  before_action :load_location, except: %i(new index create search destroy)
-
-  def index
-    @locations= Location.list.page(params[:page]).per Settings.page
-  end
+  before_action :load_location, only: %i(show edit)
 
   def show; end
-
-  def search
-    @locations = SearchService.new(Location,search_params,Settings.search_fields
-      .location).all_records.page(params[:page]).per Settings.page
-    render :index
-  end
 
   def new
     @location = Location.new
   end
 
   def create
-    @location = Location.new location_params
-    if @room.save
+    @location = Location.new location_params.merge user_id: current_user.id
+    if @location.save
       flash[:success] = t(".created")
-      redirect_to manager_locations_path
+      redirect_to manager_root_path
     else
       flash[:error] = t(".create_unsuccess")
       render :new
@@ -33,7 +23,7 @@ class Manager::LocationsController < Manager::ApplicationController
   def update
     if @location.update location_params
       flash[:success] = t(".location_updated")
-      redirect_to manager_locations_path
+      redirect_to manager_location_path
     else
       render :edit
     end
@@ -53,6 +43,6 @@ class Manager::LocationsController < Manager::ApplicationController
     @location = Location.find_by id: params[:id]
     return if @location
     flash[:error] = t(".location_not_found")
-    redirect_to manager_locations_path
+    redirect_to manager_root_path
   end
 end

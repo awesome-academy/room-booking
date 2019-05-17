@@ -1,13 +1,9 @@
 <tr>
-  <td><%= link_to room.name, manager_room_path(room) %></td>
+  <td><%= link_to room.name, manager_location_room_path(1, room) %></td>
   <td><%= room.occupancy_limit %></td>
-  <td><%= room.living_room %></td>
-  <td><%= room.bed_room %></td>
-  <td><%= room.bath_room %></td>
-  <td><%= room.number_of_bed %></td>
   <td><%= room.quantity %></td>
   <td><%= room.price %></td>
-  <td><%= room.location_id %></td>
+  <td><%= label_tag nil, room.status_tag[:name], class: room.status_tag[:class] %></td>
   <td><%= l room.created_at, format: :full %></td>
   <td><%= l room.updated_at, format: :full %></td>
 </tr>

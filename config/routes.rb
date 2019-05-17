@@ -31,12 +31,10 @@ Rails.application.routes.draw do
 
   namespace :manager do
     root "static_pages#home"
-    resources :rooms do
-      get "search", on: :collection
-    end
-    resources :locations do
+    resources :locations, except: :index do
       get "search", on: :collection
       resources :reviews, only: [:show]
+      resources(:rooms, except: :destroy){get "search", on: :collection}
     end
   end
 end
