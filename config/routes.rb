@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources(:location_types){get "search", on: :collection}
     resources(:services, except: :destroy){get "search", on: :collection}
     resources(:bed_details, except: :destroy){get "search", on: :collection}
+    resources(:locations, only: %i(index show update)){get "search", on: :collection}
 
     root "static_pages#home"
   end

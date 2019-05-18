@@ -1,27 +1,29 @@
 <%= provide :title, t(".rooms") %>
 
 <div class="row">
-  <div class="col-md-12 card">
-    <div class="card-body">
-      <h4 class="card-title"><%= t ".rooms" %></h4>
-      <%= render "shared/search", path: search_manager_location_rooms_path, fields: Settings.search_fields.room %>
-      <table class="table">
-        <thead>
-          <tr>
-            <th><%= t ".room_name" %></th>
-            <th><%= t ".occupancy_limit" %></th>
-            <th><%= t ".quantity" %></th>
-            <th><%= t ".price" %></th>
-            <th><%= t ".status" %></th>
-            <th><%= t ".created_at" %></th>
-            <th><%= t ".update_at" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render @rooms %>
-        </tbody>
-      </table>
-      <%= paginate @rooms %>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"><%= t ".rooms" %></h4>
+        <%= render "shared/search", path: search_manager_location_rooms_path, fields: Settings.search_fields.room %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t ".room_name" %></th>
+              <th><%= t ".occupancy_limit" %></th>
+              <th><%= t ".quantity" %></th>
+              <th><%= t ".price" %></th>
+              <th><%= t ".status" %></th>
+              <th><%= t ".created_at" %></th>
+              <th><%= t ".update_at" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @rooms %>
+          </tbody>
+        </table>
+        <%= paginate @rooms %>
+      </div>
     </div>
   </div>
 </div>

@@ -32,8 +32,14 @@
       </div>
     </li>
     <li class="nav-item">
+      <%= link_to  admin_locations_path, class: "nav-link" do %>
+        <i class="menu-icon mdi mdi-city"></i>
+        <span class="menu-title"><%= t ".locations" %></span>
+      <% end %>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#location_types" aria-expanded="false" aria-controls="location_types">
-        <i class="menu-icon mdi mdi-account-multiple"></i>
+        <i class="menu-icon mdi mdi-message-image"></i>
         <span class="menu-title"><%= t ".location_types" %></span>
         <i class="menu-arrow"></i>
       </a>
@@ -50,7 +56,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#services" aria-expanded="false" aria-controls="services">
-        <i class="menu-icon mdi mdi-account-multiple"></i>
+        <i class="menu-icon mdi mdi-wifi"></i>
         <span class="menu-title"><%= t ".services" %></span>
         <i class="menu-arrow"></i>
       </a>
@@ -67,7 +73,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#bed_details" aria-expanded="false" aria-controls="bed_details">
-        <i class="menu-icon mdi mdi-account-multiple"></i>
+        <i class="menu-icon mdi mdi-hotel"></i>
         <span class="menu-title"><%= t ".bed_details" %></span>
         <i class="menu-arrow"></i>
       </a>
@@ -78,23 +84,6 @@
           </li>
           <li class="nav-item">
             <%= link_to t(".new_bed_detail"), new_admin_bed_detail_path, class: "nav-link" %>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
-        <i class="menu-icon mdi mdi-account-multiple"></i>
-        <span class="menu-title"><%= t ".accounts" %></span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="page-layouts">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <%= link_to t(".list_account"), admin_users_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to t(".new_account"), new_admin_user_path, class: "nav-link" %>
           </li>
         </ul>
       </div>

@@ -22,6 +22,10 @@
 //= require admin/shared/todolist
 //= require admin/shared/file-upload
 //= require admin/shared/select2
+//= require admin/lightgallery-all.min
+//= require admin/shared/light-gallery
+//= require admin/shared/widgets
+//= require admin/shared/todo
 //= require i18n
 //= require i18n.js
 //= require i18n/translations

@@ -21,8 +21,8 @@ class Room < ApplicationRecord
     :created_at, :updated_at, pictures: [], services: []].freeze
 
   scope :by_location_id, -> (location_id){ where("location_id = ?", location_id) }
-  scope :list, lambda do
+  scope :list, (lambda do
     select :id, :name, :occupancy_limit, :quantity, :price, :created_at,
       :updated_at, :status
-  end
+  end)
 end

@@ -28,6 +28,7 @@ en:
         accounts: "Accounts"
         list_accounts: "List Accounts"
         new_account: "New Account"
+        locations: "Locations"
         location_types: "Location Types"
         list_location_types: "List Location Types"
         new_location_type: "New Location Type"
@@ -91,6 +92,26 @@ en:
       destroy:
         destroy_success: "Account deleted"
         destroy_fail: "Can't delete"
+    locations:
+      modal:
+        confirm: "Are you sure?"
+        activate: "Activate"
+        cancel: "Cancel"
+      show:
+        create_at: "Create at"
+        update_at: "Update at"
+        email: "E-mail"
+        activate_but: "Activate"
+      index:
+        page_title: "List Accounts"
+        name: "Name"
+        email: "Email"
+        role: "Role"
+        status: "Status"
+        create_at: "Created at"
+        update_at: "Updated at"
+      update:
+        activate_success: "Activated"
     location_types:
       new:
         page_title: "Create location type"
@@ -322,10 +343,11 @@ en:
         edit_location: "Edit location"
         submit: "Save"
       show:
-        create_at: "Create at"
-        update_at: "Update at"
+        information: "Information"
+        description: "Description:"
         del_but: "Delete"
         edit_but: "Edit"
+        gallery: "Gallery"
       modal:
         confirm: "Are you sure?"
         del: "Delete"

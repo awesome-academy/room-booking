@@ -1,5 +1,5 @@
 class Manager::LocationsController < Manager::ApplicationController
-  before_action :load_location, only: %i(show edit)
+  before_action :load_location, only: %i(show edit update)
 
   def show; end
 

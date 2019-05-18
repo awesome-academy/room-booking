@@ -4,10 +4,9 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title"><%= t ".locations" %>
-          <%= link_to "Create new", new_manager_location_path, class: "btn btn-outline-success ml-3" %>
-        </h4>
-
+        <h4 class="card-title"><%= t ".locations" %></h4>
+        <%= render "shared/search", path: search_admin_locations_path,
+          fields: Settings.search_fields.location %>
         <table class="table">
           <thead>
             <tr>
