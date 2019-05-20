@@ -19,7 +19,7 @@ class Manager::LocationsController < Manager::ApplicationController
 
   def create
     @location = Location.new location_params
-    if @room.save
+    if @location.save
       flash[:success] = t(".created")
       redirect_to manager_locations_path
     else
