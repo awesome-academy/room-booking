@@ -1,21 +1,9 @@
-<%= form_for [:manager, @room] do |f| %>
+<%= form_for [:manager, @location, @room] do |f| %>
   <%= render "shared/error_messages", object: f.object %>
 
   <div class="form-group">
     <%= f.label :name, t(".name") %>
     <%= f.text_field :name, class: "form-control", placeholder: t(".enter_name") %>
-  </div>
-  <div class="form-group">
-    <%= f.label :location_id, t(".form_location_id")%>
-    <%= f.text_field :location_id, class: "form-control", placeholder: t(".enter_location_id") %>
-  </div>
-  <div class="form-group">
-    <%= f.label :bed_detail_id, t(".form_bed_detail_id")%>
-    <%= f.text_field :bed_detail_id, class: "form-control", placeholder: t(".enter_bed_detail_id") %>
-  </div>
-  <div class="field">
-    <%= f.label :pictures %>
-    <%= f.file_field :pictures, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
   </div>
   <div class="form-group">
     <%= f.label :occupancy_limit, t(".form_occupancy_limit")%>
@@ -45,6 +33,23 @@
     <%= f.label :price, t(".form_price") %>
     <%= f.text_field :price, class: "form-control", placeholder: t(".enter_price") %>
   </div>
-    <%= f.button yield(:button_text), class: "btn btn-success mr-2" %>
-    <%= link_to t(".form_cancel"), request.referer, class: "btn btn-light" %>
+  <div class="form-group">
+    <%= f.label :bed_detail, t(".form_bed_detail") %>
+    <%= f.select :bed_detail_id, @room.bed_detail_option, { include_blank: false }, class: "js-example-basic-single", style: "width:100%" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :service, t(".form_services") %>
+    <%= select "room", "services", @room.service_option, { include_blank: true }, class: "js-example-basic-multiple", multiple: "multiple", style: "width:100%" %>
+  <div class="form-group">
+    <%= f.label :pictures %>
+    <%= f.file_field :pictures, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png",  class: "file-upload-default" %>
+    <div class="input-group col-xs-12">
+      <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+      <span class="input-group-append">
+        <button class="file-upload-browse btn btn-info" type="button">Upload</button>
+      </span>
+    </div>
+  </div>
+  <%= f.button yield(:button_text), class: "btn btn-success mr-2" %>
+  <%= link_to t(".form_cancel"), request.referer, class: "btn btn-light" %>
 <% end %>

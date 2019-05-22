@@ -1,26 +1,28 @@
 <%= provide :title, t(".page_title") %>
 
 <div class="row">
-  <div class="col-md-12 card">
-    <div class="card-body">
-      <h4 class="card-title"><%= t ".page_title" %></h4>
-      <%= render "shared/search", path: search_admin_users_path, fields: Settings.search_fields.user %>
-      <table class="table">
-        <thead>
-          <tr>
-            <th><%= t ".name" %></th>
-            <th><%= t ".email" %></th>
-            <th><%= t ".role" %></th>
-            <th><%= t ".status" %></th>
-            <th><%= t ".create_at" %></th>
-            <th><%= t ".update_at" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render @users %>
-        </tbody>
-      </table>
-      <%= paginate @users %>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"><%= t ".page_title" %></h4>
+        <%= render "shared/search", path: search_admin_users_path, fields: Settings.search_fields.user %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t ".name" %></th>
+              <th><%= t ".email" %></th>
+              <th><%= t ".role" %></th>
+              <th><%= t ".status" %></th>
+              <th><%= t ".create_at" %></th>
+              <th><%= t ".update_at" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @users %>
+          </tbody>
+        </table>
+        <%= paginate @users %>
+      </div>
     </div>
   </div>
 </div>

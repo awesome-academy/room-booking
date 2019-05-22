@@ -1,0 +1,19 @@
+<div class="modal fade" id="activateModal" tabindex="-1" role="dialog" aria-labelledby="activateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="activateModalLabel"><%= t ".confirm" %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <%= form_for [:admin, @location] do |f| %>
+          <%= f.hidden_field :status, value: true %>
+          <%= f.button t(".activate"), class: "btn btn-success" %>
+          <button type="button" class="btn btn-light" data-dismiss="modal"><%= t ".cancel" %></button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

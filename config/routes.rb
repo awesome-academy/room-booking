@@ -16,28 +16,34 @@ Rails.application.routes.draw do
   resources :account_activations, only: %i(edit)
   resources :password_resets, except: %i(show index destroy)
 
-
-  resources :locations do
+  resources :locations, only: %i(index show) do
     resources :reviews, only: %i(create destroy)
+    resources :rooms, only: :show
+    resources :reservations, only: %i(new create)
   end
+
+
 
   namespace :admin do
     resources(:users){get "search", on: :collection}
     resources(:location_types){get "search", on: :collection}
     resources(:services, except: :destroy){get "search", on: :collection}
     resources(:bed_details, except: :destroy){get "search", on: :collection}
+    resources(:locations, only: %i(index show update)){get "search", on: :collection}
 
     root "static_pages#home"
   end
 
   namespace :manager do
     root "static_pages#home"
-    resources :rooms do
+    resources :locations, except: :index do
       get "search", on: :collection
-    end
-    resources :locations do
-      get "search", on: :collection
-      resources :reviews, only: %i(show)
+      resources :reviews, only: :index
+      resources(:rooms, except: :destroy){get "search", on: :collection}
+      resources(:reservations, only: %i(index update)) do
+        get "search", on: :collection
+        resources(:reservation_details, only: :index){get "search", on: :collection}
+      end
     end
   end
 end

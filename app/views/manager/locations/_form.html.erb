@@ -6,16 +6,8 @@
     <%= f.text_field :name, class: "form-control", placeholder: t(".enter_name") %>
   </div>
   <div class="form-group">
-    <%= f.label :location_type_id, t(".form_location_type_id")%>
-    <%= f.text_field :location_type_id, class: "form-control", placeholder: t(".enter_location_type_id") %>
-  </div>
-  <div class="form-group">
-    <%= f.label :user_id, t(".form_user_id")%>
-    <%= f.text_field :user_id, class: "form-control", placeholder: t(".enter_user_id") %>
-  </div>
-  <div class="field">
-    <%= f.label :pictures %>
-    <%= f.file_field :pictures, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+    <%= f.label :location_type_id, t(".form_location_type")%>
+    <%= f.select :location_type_id, @location.location_type_option, { include_blank: true }, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :location, t(".form_location")%>
@@ -34,8 +26,15 @@
     <%= f.text_field :description, class: "form-control", placeholder: t(".enter_description") %>
   </div>
   <div class="form-group">
-    <%= f.label :status, t(".form_status") %>
-    <%= f.text_field :status, class: "form-control", placeholder: t(".enter_status") %>
+    <%= f.label :pictures %>
+    <%= f.file_field :pictures, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png",  class: "file-upload-default" %>
+    <div class="input-group col-xs-12">
+      <%= text_field_tag nil, nil, class: "form-control file-upload-info", placeholder: t(".form_upload_img"),
+        disabled: true %>
+      <span class="input-group-append">
+        <button class="file-upload-browse btn btn-info" type="button"><%= t ".form_upload" %></button>
+      </span>
+    </div>
   </div>
     <%= f.button yield(:button_text), class: "btn btn-success mr-2" %>
     <%= link_to t(".form_cancel"), request.referer, class: "btn btn-light" %>

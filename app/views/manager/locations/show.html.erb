@@ -1,23 +1,47 @@
 <%= provide :title, @location.name %>
 
-<%= render "manager/locations/modal" %>
-<div class="row">
-  <div class="col-12 card">
-    <div class="card-body">
-      <address>
-        <p class="font-weight-bold"><%= @location.name %></br>
-          <%= @location.national %></br> <%= @location.description %>
-          <%= (0...@location.pictures.count).each do |picture| %>
-          <div class="picture_medium">
-            <%= image_tag(@location.pictures[picture].url, class: "full_picture_auto")%>
-          </div>
-          <% end %>
+<div class="row grid-margin">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">
+          <%= t ".information" %>
+          <%= link_to t(".edit_but"), edit_manager_location_path(@location),
+          class: "btn btn-primary btn-sm float-right" %>
+        </h4>
+        <%= label_tag nil, @location.location_type_name, class: "badge badge-warning" %>
+        <%= @location.name %>
+        <address>
+          <p>
+            <i class="mdi mdi-map-marker">
+              <%= @location.national %>, <%= @location.location %>
+            </i>
           </p>
-        <p><%= t ".created_at" %>: <%= l @location.created_at, format: :full %></p>
-        <p><%= t ".updated_at" %>: <%= l @location.updated_at, format: :full %></p>
-      </address>
-      <%= button_tag t(".del_but"), class: "btn btn-danger btn-sm float-right ml-1", data: {toggle: "modal", target: "#deleteModal"} %>
-      <%= link_to t(".edit_but"), edit_manager_location_path(@location), class: "btn btn-primary btn-sm float-right" %>
+        </address>
+        <%= t ".description" %>
+        <p>
+          <%= @location.description %>
+        </p>
+      </div>
     </div>
   </div>
 </div>
+
+<div class="row grid-margin">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"><%= t ".gallery" %></h4>
+        <div id="lightgallery" class="row lightGallery">
+          <% @location.pictures.each do |picture| %>
+            <%= link_to picture.url, class: "image-tile" do %>
+              <%= image_tag picture.url, class: "image small" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

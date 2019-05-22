@@ -1,0 +1,28 @@
+<%= provide :title, t(".locations") %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title"><%= t ".locations" %></h4>
+        <%= render "shared/search", path: search_admin_locations_path,
+          fields: Settings.search_fields.location %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t ".location_name" %></th>
+              <th><%= t ".status" %></th>
+              <th><%= t ".location_type_id" %></th>
+              <th><%= t ".created_at" %></th>
+              <th><%= t ".update_at" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @locations %>
+          </tbody>
+        </table>
+        <%= paginate @locations %>
+      </div>
+    </div>
+  </div>
+</div>

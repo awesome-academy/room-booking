@@ -1,11 +1,13 @@
 <tr>
-  <td><%= link_to location.name, manager_location_path(location) %></td>
-  <td><%= location.location %></td>
-  <td><%= location.national %></td>
-  <td><%= location.zip_code %></td>
-  <td><%= location.description %></td>
-  <td><%= location.status %></td>
-  <td><%= location.location_type_id %></td>
+  <td>
+    <% if location.status %>
+      <%= link_to location.name, manager_location_path(location) %>
+    <% else %>
+      <%= location.name %>
+    <% end %>
+  </td>
+  <td><%= label_tag nil, location.status_tag[:name], class: location.status_tag[:class] %></td>
+  <td><%= location.location_type_name %></td>
   <td><%= l location.created_at, format: :full %></td>
   <td><%= l location.updated_at, format: :full %></td>
 </tr>
