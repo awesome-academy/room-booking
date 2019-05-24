@@ -19,11 +19,7 @@ class User < ApplicationRecord
   has_secure_password
 
   before_save :downcase_email
-
-  scope :activated, ->{where activated: true}
-
   before_create :create_activation_digest
-  before_save :downcase_email
 
   scope :activated, ->{where activated: true}
 
