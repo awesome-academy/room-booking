@@ -13,8 +13,12 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'shoulda-matchers'
 
+require 'simplecov'
+require 'shoulda-matchers'
+require 'capybara/rspec'
+require 'support/factory_bot'
+SimpleCov.start 'rails'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
