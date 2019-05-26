@@ -1,10 +1,15 @@
-<%= search_form_for @search do |f| %>
+<%= search_form_for @search, url: root_path do |f| %>
   <div class="row">
     <div class="col-md-4">
       <%= f.search_field :name_or_location_or_national_cont, class: "form-control form-control-lg mr-3", placeholder: t(".where_are_you_going"), required: true %>
     </div>
-    <div class="col-md-3">
-      <%= f.search_field :location_type_name_cont %>
+
+    <div class="col-md-4">
+      <%= f.search_field :location_type_name_cont, class: "form-control form-control-lg mr-3", placeholder: t(".stay_type"), required: true %>
+    </div>
+
+    <div class="col-md-2">
+      <%= button_tag t(".search"), class: "btn btn-primary" %>
     </div>
 
     <div class="row">
@@ -59,8 +64,27 @@
       </div>
     </div>
 
-    <div class="col-md-2">
-      <%= button_tag t(".search"), class: "btn btn-primary" %>
-    </div>
   </div>
 <% end %>
+
+<script>
+  $(function(){
+    $("#q_rooms_price_gteq").val('50');
+    $("#q_rooms_price_lteq").val('200');
+
+    $("#slider-range").slider({
+      range: true,
+      min: 0,
+      max: 400,
+      values: [50, 200],
+      slide: function(event,ui){
+        $("#q_rooms_price_gteq").val(ui.values[0]);
+        $("#q_rooms_price_lteq").val(ui.values[1]);
+      }
+    });
+
+    $(".ui-widget-header").css('background', '#007bff');
+    $(".ui-state-default, .ui-widget-content").css('background', 'white');
+    $(".ui-state-default, .ui-widget-content").css('border-color', '#007bff');
+  })
+</script>

@@ -31,10 +31,8 @@
 //= require turbolinks
 //= require cable
 //= require jquery.raty
-//= require locations.js
 //= require home.js
 //= require moment
 //= require daterangepicker
 //= require daterange
 //= require search.js
-//= require star_rate.js
