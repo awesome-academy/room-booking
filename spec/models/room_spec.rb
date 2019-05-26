@@ -59,7 +59,7 @@ RSpec.describe Room, type: :model do
   describe "scopes" do
     describe "by_location_id" do
       let(:location){create :location}
-      subject {create_list :room, 10, location_id: location.id }
+      subject {create_list :room, 1, location_id: location.id }
       context "should return room by location id" do
         it {expect(Room.by_location_id location.id).to eq(subject)}
       end

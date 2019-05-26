@@ -52,3 +52,7 @@ manager:
 reviews:
   form:
     row_numbers: 3
+
+rooms:
+  shows:
+    minimum_room: 1

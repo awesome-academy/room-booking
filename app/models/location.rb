@@ -7,6 +7,9 @@ class Location < ApplicationRecord
   belongs_to :user
   belongs_to :location_type
 
+  geocoded_by :location
+  after_validation :geocode, if: :location_changed?
+
   delegate :name, to: :location_type, prefix: true
 
   mount_uploaders :pictures, PictureUploader

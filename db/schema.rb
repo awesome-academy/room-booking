@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_142116) do
+ActiveRecord::Schema.define(version: 2019_05_29_042901) do
 
   create_table "bed_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_05_19_142116) do
     t.datetime "updated_at", null: false
     t.json "pictures"
     t.decimal "total_rate", precision: 2, scale: 1
+    t.float "latitude"
+    t.float "longitude"
     t.index ["location_type_id"], name: "index_locations_on_location_type_id"
     t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["national"], name: "index_locations_on_national"
@@ -78,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_05_19_142116) do
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "location_id"
-    t.string "comment"
+    t.text "comment"
     t.integer "rate", limit: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

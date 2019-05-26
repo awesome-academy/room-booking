@@ -61,6 +61,8 @@ config/storage.yml
 
 test/*
 log/*
+public/uploads/location/pictures/*
+public/uploads/room/pictures/*
 public/javascripts/translations.js
 .byebug_history
 # Ignore application configuration
