@@ -1,4 +1,14 @@
 en:
+  flash:
+    create_success: "Add success"
+    create_fail: "Add failed"
+    delete_success: "Delete success"
+    update_fail: "Update Fail"
+    update_success: "Update Success"
+    suggested_fail: "Suggested fail"
+    create_unsuccess: "Create unsuccessful"
+    room_updated: "Room updated"
+    location_updated: "Location updated"
   time:
     formats:
       full: "%H:%M-%d/%m/%Y"
