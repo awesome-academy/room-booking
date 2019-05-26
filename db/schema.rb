@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_102239) do
+ActiveRecord::Schema.define(version: 2019_06_06_035937) do
 
   create_table "bed_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2019_06_04_102239) do
     t.datetime "updated_at", null: false
     t.integer "total_bill_cents", default: 0, null: false
     t.string "total_bill_currency", default: "USD", null: false
+    t.bigint "location_id"
+    t.index ["location_id"], name: "index_reservations_on_location_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -151,6 +153,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_102239) do
   add_foreign_key "locations", "users"
   add_foreign_key "reservation_details", "reservations"
   add_foreign_key "reservation_details", "rooms"
+  add_foreign_key "reservations", "locations"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "locations"
   add_foreign_key "reviews", "users"
