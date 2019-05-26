@@ -437,3 +437,23 @@ en:
       sleeping_arrangements: "Sleeping Arrangements"
       per_night: "Per Night"
       you_won_be: "You won’t be charged yet"
+
+  static_pages:
+    home:
+      just_for_the_weekend: "Just for the weekend"
+      discover_new_inspiring_places_close_to_home: "Discover new, inspiring places close to home"
+      new_york: "New York"
+      london: "London"
+      berlin: "Berlin"
+      whatever_accommodations: "Whatever accommodations you’re looking for, we've got them..."
+      explore_the_world: "Explore the world"
+      see_what_peopel: "See what peopel are travelling, all around the world."
+    search_home:
+      where_are_you_going: "Where are you going ?"
+      start_date: "Start Date"
+      end_date: "End Date"
+      search: "Search"
+
+  javascripts:
+    locations:
+      roombooking: "RoomBooking"

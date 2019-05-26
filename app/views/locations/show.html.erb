@@ -63,6 +63,14 @@
     <%= link_to t(".book_now"), new_location_reservation_path(@location), class: "genric-btn primary" %>
   </div>
 </section>
+
+<div class="sample-text-area">
+  <div class="container">
+    <div id="map-canvas"></div>
+    <%= content_tag :div, nil, id: "mydata", data: {location: @location} %>
+  </div>
+</div>
+
 <section class="sample-text-area">
   <div class="container">
     <h3><%= t ".reviews" %> (<%= @location.reviews.count %>)</h3>

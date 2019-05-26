@@ -2,8 +2,8 @@ class LocationsController < ApplicationController
   before_action :set_location, only: :show
 
   def index
-    @locations = Location.order(total_rate: :desc)
-      .page(params[:page]).per Settings.controllers.locations.pag
+    @search = Location.ransack params[:q]
+    @locations = @search.result.page params[:page]
   end
 
   def show; end

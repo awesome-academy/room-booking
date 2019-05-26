@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_143557) do
     t.string "location"
     t.string "national"
     t.string "zip_code"
-    t.string "description"
+    t.text "description"
     t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
