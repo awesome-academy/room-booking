@@ -448,7 +448,6 @@ en:
       new_york: "New York"
       london: "London"
       berlin: "Berlin"
-      whatever_accommodations: "Whatever accommodations you’re looking for, we've got them..."
       explore_the_world: "Explore the world"
       see_what_peopel: "See what peopel are travelling, all around the world."
     search_home:
@@ -456,7 +455,20 @@ en:
       start_date: "Start Date"
       end_date: "End Date"
       search: "Search"
+      price_range: "Price range:"
+      min_price: "Min Price:"
+      max_price: "Max Price:"
+      occupancy_limits: "Occupancy limits"
+      livingrooms: "Livingrooms"
+      bedrooms: "Bedrooms"
+      bathrooms: "Bathrooms"
+      star_rating: "Star Rating"
+    location_type:
+      whatever_accommodations: "Whatever accommodations you’re looking for, we've got them..."
 
   javascripts:
     locations:
       roombooking: "RoomBooking"
+    location_type:
+      whatever_accommodations: "Whatever accommodations you’re looking for, we've got them..."
+
