@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe "columns" do
+    subject {create :user}
+    it{is_expected.to have_db_column(:name).of_type(:string)}
+    it{is_expected.to have_db_column(:email).of_type(:string)}
+    it{is_expected.to have_db_column(:password_digest).of_type(:string)}
+    it{is_expected.to have_db_column(:remember_digest).of_type(:string)}
+    it{is_expected.to have_db_column(:admin).of_type(:boolean)}
+    it{is_expected.to have_db_column(:activation_digest).of_type(:string)}
+    it{is_expected.to have_db_column(:activated).of_type(:boolean)}
+    it{is_expected.to have_db_column(:activated_at).of_type(:datetime)}
+    it{is_expected.to have_db_column(:reset_digest).of_type(:string)}
+    it{is_expected.to have_db_column(:reset_sent_at).of_type(:datetime)}
+  end
+
   describe "validations" do
     subject {create :user}
     it {is_expected.to be_valid}
@@ -80,7 +94,7 @@ RSpec.describe User, type: :model do
     end
 
     describe "before_create :create_activation_digest" do
-
+      it {expect(subject.activation_digest).not_to eq(nil)}
     end
   end
 
@@ -98,6 +112,78 @@ RSpec.describe User, type: :model do
   end
 
   describe ".digest" do
+    let(:token) {User.new_token}
+    let(:digest) {User.digest token}
+    it {expect(BCrypt::Password.new(digest).is_password? token).to eq(true)}
+  end
 
+  describe ".token" do
+    let(:token) {User.new_token}
+    it {expect(token.size).to eq(22)}
+  end
+
+  describe "#remember" do
+    subject {create :user}
+    before {subject.remember}
+    it {expect(subject.remember_token).not_to eq(nil)}
+  end
+
+  describe "#authenticated?" do
+    subject {create :user}
+    context "remember" do
+      before {subject.remember}
+      it {expect(subject.authenticated? "remember", subject.remember_token).to eq(true)}
+    end
+
+    context "activation" do
+      it {expect(subject.authenticated? "activation", subject.activation_token).to eq(true)}
+    end
+
+    context "reset" do
+      before {subject.create_reset_digest}
+      it {expect(subject.authenticated? "reset", subject.reset_token).to eq(true)}
+    end
+  end
+
+  describe "#forget" do
+    subject {create :user}
+    before do
+      subject.remember
+      subject.forget
+    end
+    it {expect(subject.remember_digest).to eq(nil)}
+  end
+
+  describe "#activate" do
+    subject {create :user, :not_activated}
+    before {subject.activate}
+    it {expect(subject.activated).to eq(true)}
+  end
+
+  describe "#send_activation_email" do
+    subject {create :user, :not_activated}
+    before {subject.send_activation_email}
+    it {expect(UserMailer.deliveries.count).to eq(1)}
+  end
+
+  describe "#create_reset_digest" do
+    subject {create :user}
+    before {subject.create_reset_digest}
+    it {expect(subject.authenticated? "reset", subject.reset_token).to eq(true)}
+  end
+
+  describe "#send_password_reset_email" do
+    subject {create :user}
+    before do
+      subject.create_reset_digest
+      subject.send_password_reset_email
+    end
+    it {expect(UserMailer.deliveries.count).to eq(2)}
+  end
+
+  describe "#password_reset_expired?" do
+    subject {create :user}
+    before {subject.reset_sent_at = 4.hours.ago}
+    it {expect(subject.password_reset_expired?).to eq(true)}
   end
 end

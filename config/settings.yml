@@ -10,6 +10,10 @@ validates:
   bed_detail:
     maximum_name: 50
 
+models:
+  user:
+    waiting_time: 2
+
 search_fields:
   user: ["name", "email", "created_at", "updated_at"]
   location_type: ["name", "created_at", "updated_at"]
