@@ -62,5 +62,6 @@ config/storage.yml
 test/*
 log/*
 public/javascripts/translations.js
+.byebug_history
 # Ignore application configuration
 /config/application.yml
