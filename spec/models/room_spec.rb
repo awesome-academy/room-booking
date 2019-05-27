@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Room, type: :model do
   context "Factory" do
@@ -15,7 +15,7 @@ RSpec.describe Room, type: :model do
 
   context "Validations" do
     before do
-      subject{build(:room)}
+      subject{create :room}
     end
 
     context "name" do
@@ -45,10 +45,6 @@ RSpec.describe Room, type: :model do
     context "quantity" do
       it{is_expected.to validate_presence_of(:quantity)}
     end
-
-    context "price" do
-      it{is_expected.to validate_presence_of(:price)}
-    end
   end
 
   context "Associations" do
@@ -58,5 +54,44 @@ RSpec.describe Room, type: :model do
     it{is_expected.to have_many(:reservation_details)}
     it{is_expected.to have_many(:services)}
     it{is_expected.to have_many(:reservations)}
+  end
+
+  describe "scopes" do
+    describe "by_location_id" do
+      let(:location){create :location}
+      subject {create_list :room, 10, location_id: location.id }
+      context "should return room by location id" do
+        it {expect(Room.by_location_id location.id).to eq(subject)}
+      end
+    end
+
+    describe "list" do
+      subject {Room.list}
+      context "should return list rooms not have" do
+        it "living_room" do
+          subject.each do |room|
+            expect(room).not_to have_db_column(:living_room)
+          end
+        end
+
+        it "bed_room" do
+          subject.each do |room|
+            expect(room).not_to have_db_column(:bed_room)
+          end
+        end
+
+        it "bath_room" do
+          subject.each do |room|
+            expect(room).not_to have_db_column(:bath_room)
+          end
+        end
+
+        it "number_of_bed" do
+          subject.each do |room|
+            expect(room).not_to have_db_column(:number_of_bed)
+          end
+        end
+      end
+    end
   end
 end
