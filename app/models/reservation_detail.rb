@@ -16,7 +16,7 @@ class ReservationDetail < ApplicationRecord
   end
 
   def valid_end_date
-    errors.add(:start_date, "is not valid") unless self.end_date >= Time.now
+    errors.add(:end_date, "is not valid") unless self.end_date >= Time.now
   end
 
   def valid_days
@@ -24,13 +24,11 @@ class ReservationDetail < ApplicationRecord
   end
 
   def valid_room_ready
-    room = Room.find_by id: self.room_id
-    errors.add(:end_date, "room is full") unless size_between_time(self.start_date, self.end_date) < room.quantity
+    errors.add(:start_date, "room is full") unless size_between_time(self.start_date, self.end_date) < self.room.quantity
   end
 
   private
   def size_between_time(start_date, end_date)
-    room = Room.find_by id: self.room_id
-    room.reservation_details.where("start_date >= ? AND end_date <= ?",start_date,end_date).size
+    self.room.reservation_details.where("start_date < ? OR end_date > ?",end_date , start_date).size
   end
 end
