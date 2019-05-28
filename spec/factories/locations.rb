@@ -8,5 +8,9 @@ FactoryBot.define do
     status{"0"}
     location_type
     user
+
+    after(:create) do |location|
+        create :room, location: location
+    end
   end
 end
