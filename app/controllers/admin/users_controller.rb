@@ -23,7 +23,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.new user_params.merge activated: true, activated_at: Time.zone.now
     if @user.save
       flash[:success] = t ".create_success"
-      redirect_to request.referer
+      redirect_to admin_users_url
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     if @user.update user_params
       flash[:success] = t ".update_success"
-      redirect_to request.referer
+      redirect_to admin_users_url
     else
       render :edit
     end
