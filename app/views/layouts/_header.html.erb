@@ -16,24 +16,23 @@
   <div class="container main-menu">
     <div class="row align-items-center justify-content-between d-flex">
         <div id="logo">
-          <a href="index.html"><%= image_tag "admin/logo.png", alt: "logo" %></a>
+          <a href="index.html"><%= image_tag "admin/logo.png", alt: t(".alt_logo") %></a>
         </div>
         <nav id="nav-menu-container">
           <ul class="nav-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Accommodations</a></li>
-            <% if logged_in? %>
-              <li><%= link_to "Host", manager_root_path %></li>
-              <li class="menu-has-children"><a href="">Account</a>
-                <ul>
-                  <li><%= link_to "Profile", "#" %></li>
-                  <li><%= link_to "Change Password", changepassword_path %></li>
-                  <li><%= link_to "Sign Out", logout_path, method: :delete %></li>
+            <li><%= link_to t(".home"), "#" %></li>
+            <li><%= link_to t(".accommodations"), "#" %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to t(".host"), manager_root_path %></li>
+              <li class="menu-has-children"><%= link_to t(".account"), "#" %>
+                  <li><%= link_to t(".profile"), "#" %></li>
+                  <li><%= link_to t(".change_pass"), edit_user_registration_path %></li>
+                  <li><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>
                 </ul>
               </li>
             <% else %>
-              <li><%= link_to "Log In", login_path %></li>
-              <li><%= link_to "Sign up", registration_path %></li>
+              <li><%= link_to t(".log_in"), new_user_session_path %></li>
+              <li><%= link_to t(".sign_up"), new_user_registration_path %></li>
             <% end %>
           </ul>
         </nav>

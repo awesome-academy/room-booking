@@ -8,8 +8,7 @@
     password: password,
     password_confirmation: password,
     admin: true,
-    activated: true,
-    activated_at: Time.zone.now)
+    confirmed_at: Time.zone.now)
 end
 
 99.times do |n|
@@ -20,8 +19,7 @@ end
     email: email,
     password: password,
     password_confirmation: password,
-    activated: true,
-    activated_at: Time.zone.now)
+    confirmed_at: Time.zone.now)
 end
 
 # Location types
