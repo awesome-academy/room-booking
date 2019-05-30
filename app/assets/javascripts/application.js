@@ -33,3 +33,6 @@
 //= require jquery.raty
 //= require locations.js
 //= require home.js
+//= require moment
+//= require daterangepicker
+//= require daterange

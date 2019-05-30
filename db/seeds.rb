@@ -32,7 +32,6 @@ end
 
 # Locations
 users = User.all
-Location.skip_callback(:validation, :after, :geocode)
 3.times do |n|
   users.each do |user|
     name = FFaker::Company.name << " - #{rand(1..100)}"

@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :load_reservations, only: %i(show)
-  before_action :logged_in_user, only: :create
+  before_action :authenticate_user!, only: %i(create new)
   def create
     @book_room = BookRoom.new(reservations_params, current_user).book
     if @book_room[:reservation].valid? && @book_room[:detail].valid?

@@ -26,7 +26,9 @@ gem "figaro"
 gem "geocoder", "~> 1.4"
 gem "devise"
 gem "cancancan"
-gem "ransack"
+gem "ransack", github: "activerecord-hackery/ransack"
+gem "momentjs-rails"
+gem "bootstrap-daterangepicker-rails"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -54,5 +54,22 @@ RSpec.describe Location, type: :model do
         end
       end
     end
+
+    describe "have_rooms_fit_with" do
+      subject {Location.have_rooms_fit_with({range: "03/06/2019 - 06/06/2019", peoples: 30, rooms: 27})}
+      context "should return true location" do
+        it "enought rooms" do
+          subject.each do |location|
+            expect(location.total_rooms).to be >= 27
+          end
+        end
+
+        it "enought capacity" do
+          subject.each do |location|
+            expect(location.total_capacity).to be >= 30
+          end
+        end
+      end
+    end
   end
 end
