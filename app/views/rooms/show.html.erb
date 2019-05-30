@@ -1,0 +1,120 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <!-- Image -->
+<br>
+<div class="row d-flex justify-content-center">
+  <div class="col-7 ">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <% @room.pictures.each_with_index do |picture, index| %>
+          <% if index==0 %>
+            <div class="carousel-item active">
+              <%= image_tag picture.url, class: "d-block w-100" %>
+            </div>
+          <% else %>
+            <div class="carousel-item ">
+              <%= image_tag picture.url, class: "d-block w-100" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <%= link_to "#carouselExampleIndicators", class: "carousel-control-prev", role: "button", data: {slide: "prev"} do %>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only"><%= t ".previous" %></span>
+      <% end %>
+      <%= link_to "#carouselExampleIndicators", class: "carousel-control-next", role: "button", data: {slide: "next"} do %>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only"><%= t ".next" %></span>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br>
+    <!-- Main Info -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-4">
+        <div style="border-bottom: 0.5px solid #dadada;">
+          <h2><%= @room.name %></h2><span></span><span> Host : <%= @room.location.user.name %>
+          </span><br>
+        <div class="row">
+          <br>
+          <div class="col-md-9">
+            <h2><div><%= t ".entire_house" %></div></h2>
+            <br>
+            <div class="row text-center row-space-1">
+              <div class="col-sm-3">
+                <i class="fa fa-home fa-2x"></i>
+              </div>
+              <div class="col-sm-3">
+                <i class="fa fa-users fa-2x"></i>
+              </div>
+              <div class="col-sm-3">
+                <i class="fa fa-bed fa-2x"></i>
+              </div>
+              <div class="col-sm-3">
+                <i class="fa fa-ship fa-2x"></i>
+              </div>
+            </div>
+
+            <div class="row text-center">
+              <div class="col-sm-3">
+                <%= @room.occupancy_limit %> <%= @room.occupancy_limit > Settings.rooms.shows.minimum_room ? t(".guests") : t(".guests") %>
+              </div>
+              <div class="col-sm-3">
+                <%= @room.living_room %> <%= @room.living_room > Settings.rooms.shows.minimum_room ? t(".livingrooms") : t(".livingrooms") %>
+              </div>
+              <div class="col-sm-3">
+                <%= @room.bed_room %> <%= @room.bed_room > Settings.rooms.shows.
+                  minimum_room ? t(".bedrooms") : t(".bedrooms") %>
+              </div>
+              <div class="col-sm-3">
+                <%= @room.bath_room %> <%= @room.bath_room > Settings.rooms.shows.minimum_room ? t(".bathrooms") : t(".bathrooms") %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-13">
+        <div style="border-bottom: 0.5px solid #dadada;">
+          <h2><div><%= t ".amenities" %></div></h2>
+          <% @room.services.each do |r| %>
+            -<%= r.name %>
+            <br>
+          <% end %>
+        </div>
+      </div>
+      <br>
+      <div class="col-md-13">
+        <div style="border-bottom: 0.5px solid #dadada;">
+          <h2><div><%= t ".sleeping_arrangements" %></div></h2>
+          <%= @room.number_of_bed %> <%= @room.bed_detail_name %>
+        </div>
+      </div>
+    </div>
+      <div class="col-md-3 banner-right card">
+        <div class="tab-content" id="myTabContent">
+          <div id="flight" role="tabpanel" aria-labelledby="flight-tab">
+          <form class="form-wrap">
+            <div class="row">
+              <div class="col-md-12 ">
+                <h2><span class="pull-left">$<%= @room.price %> </span></h2>
+                <h2><span class="pull-right"><%= t ".per_night" %></span></h2>
+              </div>
+            </div>
+            <hr>
+            <%= link_to t(".book_now"), new_location_reservation_path, class: "genric-btn primary" %>
+            <p><%= t ".you_won_be" %></p>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -23,6 +23,7 @@ gem "jquery-rails"
 gem "bootstrap", "~> 4.3.1"
 gem "kaminari"
 gem "figaro"
+gem "geocoder", "~> 1.4"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

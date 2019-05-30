@@ -10,6 +10,8 @@ class Room < ApplicationRecord
   belongs_to :bed_detail
   accepts_nested_attributes_for :rooms_services
 
+  delegate :name, to: :bed_detail, prefix: true
+
   mount_uploaders :pictures, PictureUploader
 
   validates_presence_of :name, :occupancy_limit, :living_room, :bed_room,

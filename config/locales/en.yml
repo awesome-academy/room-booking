@@ -418,3 +418,13 @@ en:
       create:
         create_unsuccess: "Create unsuccessful!"
         created: "Room created!"
+
+  rooms:
+    show:
+      previous: "Previous"
+      next: "Next"
+      entire_house: "Entire house"
+      amenities: "Amenities"
+      sleeping_arrangements: "Sleeping Arrangements"
+      per_night: "Per Night"
+      you_won_be: "You won’t be charged yet"

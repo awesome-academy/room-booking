@@ -5,6 +5,15 @@
       <%= @location.name %>
       <%= content_tag :span, @location.total_rate, class: @location.rate_badge %>
     </h3>
+    <h4>
+      <address>
+        <p>
+          <i class="material-icons">
+             <%= @location.location %>
+          </i>
+        </p>
+      </address>
+    </h4>
     <div class="row gallery-item">
       <% @location.pictures.each_with_index do |picture, index| %>
         <% if index == 0 %>
@@ -51,10 +60,9 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to "Book now", new_location_reservation_path(@location), class: "genric-btn primary" %>
+    <%= link_to t(".book_now"), new_location_reservation_path(@location), class: "genric-btn primary" %>
   </div>
 </section>
-
 <section class="sample-text-area">
   <div class="container">
     <h3><%= t ".reviews" %> (<%= @location.reviews.count %>)</h3>
