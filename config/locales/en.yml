@@ -51,7 +51,16 @@ en:
     application:
       base_title: "Room booking"
     header:
-
+      profile: "Profile"
+      change_pass: "Change Password"
+      sign_out: "Sign Out"
+      sign_up: Sign up"
+      log_in: "Log In"
+      host: "Host"
+      account: "Account"
+      home: "Home"
+      accommodations: "Accommodations"
+      alt_logo: "Logo"
     manager:
       application:
         base_title: "Manger room booking"

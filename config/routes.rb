@@ -1,20 +1,26 @@
 Rails.application.routes.draw do
+  devise_for :users, skip: %i(sessions registrations passwords)
   root "static_pages#home"
 
-  get "/registration", to: "accounts#new"
-  get "/profile", to: "accounts#show"
-  get "/changepassword", to: "accounts#edit"
-  get "/login", to: "sessions#new"
+  devise_scope :user do
+    get "sign_in", to: "users/sessions#new", as: "new_user_session"
+    get "registration", to: "users/registrations#new", as: "new_user_registration"
+    # get "profile", to: "users/accounts#show"
+    get "changepassword", to: "users/registrations#edit", as: "edit_user_registration"
+    get "resetpassword", to: "users/passwords#new", as: "new_user_password"
+    get "resetpassword/edit", to: "users/passwords#edit", as: "edit_user_password"
 
-  post "/registration", to: "accounts#create"
-  post "/login", to: "sessions#create"
+    post "registration", to: "users/registrations#create", as: "user_registration"
+    post "sign_in", to: "users/sessions#create", as: "user_session"
+    post "resetpassword", to: "users/passwords#create", as: "user_password"
 
-  patch "/changepassword", to: "accounts#update"
+    patch "resetpassword", to: "users/passwords#update"
+    patch "changepassword", to: "users/registrations#update"
+    put "resetpassword", to: "users/passwords#update"
+    put "changepassword", to: "users/registrations#update"
 
-  delete "/logout", to: "sessions#destroy"
-
-  resources :account_activations, only: %i(edit)
-  resources :password_resets, except: %i(show index destroy)
+    delete "sign_out", to: "users/sessions#destroy"
+  end
 
   resources :locations, only: %i(index show) do
     resources :reviews, only: %i(create destroy)

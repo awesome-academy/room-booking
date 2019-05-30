@@ -1,0 +1,15 @@
+<section class="sample-text-area">
+  <div class="container">
+    <div class="row fullscreen align-items-center justify-content-center">
+      <div class="col-md-6 banner-right card shadow-lg">
+        <%= form_for resource, as: resource_name, url: changepassword_path, html: {method: :put, class: "form-wrap"}  do |f| %>
+          <%= render "users/shared/error_messages", resource: resource %>
+          <%= f.password_field :current_password, class: "form-control", placeholder: "Enter old password" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "Enter new password" %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm new password" %>
+          <%= f.button "Change", class: "primary-btn text-uppercase" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

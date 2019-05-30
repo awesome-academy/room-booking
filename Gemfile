@@ -24,7 +24,8 @@ gem "bootstrap", "~> 4.3.1"
 gem "kaminari"
 gem "figaro"
 gem "geocoder", "~> 1.4"
-
+gem "devise"
+gem "cancancan"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "rspec-rails"

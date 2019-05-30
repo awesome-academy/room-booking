@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row fullscreen align-items-center justify-content-center">
       <div class="col-md-6 banner-right card shadow-lg">
-        <%= form_for :session, url: login_path, html: {class: "form-wrap"}  do |f| %>
+        <%= form_for resource, as: resource_name, url: session_path(resource_name), html: {class: "form-wrap"}  do |f| %>
           <%= f.email_field :email, class: "form-control", placeholder: "Enter email" %>
           <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
-          <%= link_to "Forgot Password?", new_password_reset_path %>
+          <%= link_to "Forgot Password?", password_path(resource) %>
           <div>
             <%= f.label :remember_me, class: "checkbox" do %>
               <%= f.check_box :remember_me %>

@@ -37,12 +37,14 @@ controllers:
       pag: 10
     locations:
       page: 5
-
   manager:
     rooms:
       page: 5
     locations:
       page: 5
+  locations:
+    pag: 9
+
 
 manager:
   rooms:
