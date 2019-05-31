@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :locations, only: %i(index show) do
+    get "search_home", on: :collection, to: "static_pages#search"
     resources :reviews, only: %i(create destroy)
     resources :rooms, only: :show
     resources :reservations, only: %i(new create)

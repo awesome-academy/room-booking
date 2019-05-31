@@ -61,6 +61,7 @@ config/storage.yml
 
 test/*
 log/*
+public/uploads/location_type/pictures/*
 public/uploads/location/pictures/*
 public/uploads/room/pictures/*
 public/javascripts/translations.js

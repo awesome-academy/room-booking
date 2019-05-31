@@ -31,3 +31,5 @@
 //= require turbolinks
 //= require cable
 //= require jquery.raty
+//= require locations.js
+//= require home.js

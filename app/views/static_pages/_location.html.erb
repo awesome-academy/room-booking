@@ -1,0 +1,21 @@
+<% @locations.each do |location| %>
+<div class="col-lg-4 card">
+  <div class="single-destinations">
+    <div class="thumb">
+      <%= image_tag location.pictures[Settings.static_pages.location.number_of_pictures].url ,class: "d-block w-100" if
+      location.pictures.length > Settings.static_pages.location.number_of_pictures %>
+    </div>
+    <div class="details">
+      <h4 class="d-flex justify-content-between">
+        <span><%= location.name %></span>
+        <div class="badge badge-primary"><h4><span><%= location.total_rate %></span></h4></div>
+      </h4>
+      <p>
+        <%= t ".view_on_map" %>   |   <%= location.reviews.count %>  <%= t ".reviews" %>
+      </p>
+      <%= link_to t(".view"), location_path(location),class: "price-btn" %>
+    </div>
+  </div>
+</div>
+<br>
+<% end %>

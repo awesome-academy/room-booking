@@ -24,6 +24,7 @@ search_fields:
   service: ["name", "created_at", "updated_at"]
   bed_detail: ["name", "created_at", "updated_at"]
   reservation: ["total_bill", "created_at", "updated_at"]
+  location_home: ["name", "national", "location"]
 
 controllers:
   admin:
@@ -44,7 +45,9 @@ controllers:
       page: 5
   locations:
     pag: 9
-
+  static_pages:
+    page: 9
+    limit_location: 3
 
 manager:
   rooms:
@@ -58,3 +61,7 @@ reviews:
 rooms:
   shows:
     minimum_room: 1
+
+static_pages:
+  location:
+    number_of_pictures: 0
