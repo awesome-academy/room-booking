@@ -410,7 +410,10 @@ en:
       start: "Start"
       end: "End"
       number: :Number
-
+    search:
+      location: "Where are you going ?"
+      no_peoples: "Number of peoples"
+      no_rooms: "Number of rooms you want"
   reviews:
     form:
       create: "Create"

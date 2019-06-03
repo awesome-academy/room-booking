@@ -9,6 +9,7 @@ class Room < ApplicationRecord
   belongs_to :location
   belongs_to :bed_detail
   accepts_nested_attributes_for :rooms_services
+  after_save :total_capacity_and_total_rooms_caculate
 
   delegate :name, to: :bed_detail, prefix: true
 
@@ -27,4 +28,11 @@ class Room < ApplicationRecord
     select :id, :name, :occupancy_limit, :quantity, :price, :created_at,
       :updated_at, :status
   end)
+
+  private
+  def total_capacity_and_total_rooms_caculate
+    total_capacity = location.rooms.sum("occupancy_limit * quantity")
+    total_rooms = location.rooms.sum(:quantity)
+    location.update(total_capacity: total_capacity, total_rooms: total_rooms)
+  end
 end

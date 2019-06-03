@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_143557) do
+ActiveRecord::Schema.define(version: 2019_06_03_013340) do
 
   create_table "bed_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_143557) do
     t.decimal "total_rate", precision: 2, scale: 1
     t.float "latitude"
     t.float "longitude"
+    t.integer "total_capacity"
+    t.integer "total_rooms"
     t.index ["location_type_id"], name: "index_locations_on_location_type_id"
     t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["national"], name: "index_locations_on_national"

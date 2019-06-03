@@ -25,6 +25,7 @@
             <% if user_signed_in? %>
               <li><%= link_to t(".host"), manager_root_path %></li>
               <li class="menu-has-children"><%= link_to t(".account"), "#" %>
+                <ul>
                   <li><%= link_to t(".profile"), "#" %></li>
                   <li><%= link_to t(".change_pass"), edit_user_registration_path %></li>
                   <li><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>

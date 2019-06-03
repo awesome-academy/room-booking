@@ -1,3 +1,4 @@
+<%= render "locations/search" %>
 <section class="destinations-area section-gap">
   <div class="container">
     <div class="row d-flex justify-content-center">
@@ -10,6 +11,7 @@
     </div>
     <div class="row">
       <%= render @locations %>
+      <%= paginate @locations %>
     </div>
   </div>
 </section>

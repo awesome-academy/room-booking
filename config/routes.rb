@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :reviews, only: %i(create destroy)
     resources :rooms, only: :show
     resources :reservations, only: %i(new create)
+    collection do
+      match "search" => "locations#search", via: [:get, :post], as: :search
+    end
   end
 
 
