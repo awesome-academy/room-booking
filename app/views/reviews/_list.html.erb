@@ -6,9 +6,9 @@
     <div class="row">
       <div class="col-md-11">
         <div>
-          <strong><%= r.user.name %> <div>
-            <%= content_tag :span, r.rate, class: r.rate_badge %>
-          </div> </strong>
+          <strong><%= r.user.name %> <div id="stars_<%= r.id %>">
+          </div>
+          </strong>
         </div>
         <div><%= l r.created_at, format: :full %></div>
         <div><%= r.comment %></div>

@@ -36,3 +36,5 @@
 //= require moment
 //= require daterangepicker
 //= require daterange
+//= require search.js
+//= require star_rate.js

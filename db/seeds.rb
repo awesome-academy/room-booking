@@ -30,6 +30,12 @@ names.each do |name|
   LocationType.create!(name: name)
 end
 
+# Services
+names = ["Kitchen", "Shampoo", "Heating", "Air conditioning", "Washer", "Dryer", "Wifi", "Breakfast", "Indoor fireplace", "Hangers", "Iron", "Hair dryer" ,"Laptop friendly workspace", "TV", "Crib", "High chair", "Self check-in", "Smoke detector", "Carbon monoxide detector" ]
+names.each do |name|
+  Service.create!(name: name)
+end
+
 # Locations
 users = User.all
 3.times do |n|
@@ -97,4 +103,10 @@ locations = Location.all
       pictures: [File.open(Rails.root + "vendor/assets/images/seeds/#{rand 1..3}.jpg")]
       )
   end
+end
+
+# Rooms services
+rooms = Room.all
+rooms.each do |room|
+  room.services << Service.order("RAND()").limit(6)
 end

@@ -1,0 +1,26 @@
+<section class="recent-blog-area section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-9">
+                <div class="title text-center">
+                    <h3 class="mb-10"><%= t ".whatever_accommodations" %></h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="active-recent-blog-carusel">
+                <% @location_types.each do |location_type| %>
+                <div class="single-recent-blog-post item">
+                    <%= link_to "#", class: "thumb" do %>
+                        <%= image_tag location_type.pictures[Settings.static_pages.location.number_of_pictures].url ,class: "d-block w-100" if
+                        location_type.pictures.length > Settings.static_pages.location.number_of_pictures %>
+                    <% end %>
+                    <div class="details">
+                        <a href="#"><h4 class="title"><%= location_type.name %></h4></a>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</section>
