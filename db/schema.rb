@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_013340) do
+ActiveRecord::Schema.define(version: 2019_06_04_102239) do
 
   create_table "bed_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -73,10 +73,11 @@ ActiveRecord::Schema.define(version: 2019_06_03_013340) do
 
   create_table "reservations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.decimal "total_bill", precision: 12, scale: 3
     t.integer "status", limit: 1, default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_bill_cents", default: 0, null: false
+    t.string "total_bill_currency", default: "USD", null: false
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -100,13 +101,14 @@ ActiveRecord::Schema.define(version: 2019_06_03_013340) do
     t.integer "bath_room", limit: 1
     t.integer "number_of_bed", limit: 1
     t.integer "quantity", limit: 1, null: false
-    t.decimal "price", precision: 12, scale: 3
     t.bigint "bed_detail_id"
     t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "pictures"
     t.boolean "status", default: true
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
     t.index ["bed_detail_id"], name: "index_rooms_on_bed_detail_id"
     t.index ["location_id"], name: "index_rooms_on_location_id"
   end

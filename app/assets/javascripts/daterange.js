@@ -1,3 +1,7 @@
 $(document).ready(function() {
-  $('.daterange').daterangepicker();
+  $('.daterange').daterangepicker({
+    locale: {
+      format: 'DD/MM/YYYY'
+    }
+  });
 });

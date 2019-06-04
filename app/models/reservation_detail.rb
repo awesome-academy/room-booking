@@ -12,23 +12,24 @@ class ReservationDetail < ApplicationRecord
   validate :valid_room_ready
 
   def valid_start_date
-    errors.add(:start_date, "is not valid") unless self.start_date >= Time.now
+    errors.add(:start_date, t("reservation_details.model.valid_start_date")) unless start_date >= Time.now
   end
 
   def valid_end_date
-    errors.add(:end_date, "is not valid") unless self.end_date >= Time.now
+    errors.add(:end_date, t("reservation_details.model.valid_end_date")) unless end_date >= Time.now
   end
 
   def valid_days
-    errors.add(:end_date, "days must more than one") if self.end_date == self.start_date
+    errors.add(:end_date, t("reservation_details.model.valid_days")) if end_date == start_date
   end
 
   def valid_room_ready
-    errors.add(:start_date, "room is full") unless size_between_time(self.start_date, self.end_date) < self.room.quantity
+    errors.add(:room_id, t("reservation_details.model.valid_room_ready")) if (size_between_time(start_date, end_date) >= room.quantity)
   end
 
   private
   def size_between_time(start_date, end_date)
-    self.room.reservation_details.where("start_date < ? OR end_date > ?",end_date , start_date).size
+    room.reservation_details.joins(:reservation).where("reservations.status <= 1")
+      .where("start_date <= ?", end_date).where("end_date >= ?", start_date).size
   end
 end

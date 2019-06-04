@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get "search_home", on: :collection, to: "static_pages#search"
     resources :reviews, only: %i(create destroy)
     resources :rooms, only: :show
-    resources :reservations, only: %i(new create)
+    resources :reservations, only: %i(new create index)
     collection do
       match "search" => "locations#search", via: [:get, :post], as: :search
     end

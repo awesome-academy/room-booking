@@ -12,7 +12,11 @@
       <p>
         <%= t ".view_on_map" %>  |   <%= location.reviews.count %> <%= t ".reviews" %>
       </p>
-      <%= link_to t(".view"), location_path(location), class: "price-btn" %>
+      <% if params %>
+        <%= link_to t(".view"), location_path(location, params.permit(q: {})), class: "price-btn" %>
+      <% else %>
+        <%= link_to t(".view"), location_path(location), class: "price-btn" %>
+      <% end %>
     </div>
   </div>
 </div>

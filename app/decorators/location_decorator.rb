@@ -1,5 +1,5 @@
-module LocationDecorator
-  include ActionView::Helpers
+class LocationDecorator < ApplicationDecorator
+  delegate_all
 
   def select_option
     Location.pluck :name

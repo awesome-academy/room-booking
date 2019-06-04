@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def create
-    @user = User.new user_params.merge activated: true, activated_at: Time.zone.now
+    @user = User.new user_params.merge confirmed_at: Time.now
     if @user.save
       flash[:success] = t ".create_success"
       redirect_to admin_users_url
@@ -51,7 +51,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   private
   def user_params
-    params.require(:user).permit User::USER_PARAMS
+    params.require(:user).permit :name, :email, :password, :password_confirmation
   end
 
   def search_params

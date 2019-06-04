@@ -89,7 +89,7 @@ locations = Location.all
     bath_room = rand(1..2)
     number_of_bed = rand(1..2)
     quantity = rand(5..10)
-    price = rand(50..100)
+    price = rand(50..400)
     bed_detail_id = BedDetail.all.sample.id
     location.rooms.create!(name: name,
       occupancy_limit: occupancy_limit,

@@ -52,15 +52,25 @@
       <tbody>
         <% @location.rooms.each do |room| %>
           <tr>
-          <td><%= link_to room.name, location_room_path(@location, room) %></td>
+          <td>
+            <% if params %>
+              <%= link_to room.name, location_room_path(@location, room, params.permit(q: {})) %>
+            <% else %>
+              <%= link_to room.name, location_room_path(@location, room) %>
+            <% end %>
+          </td>
           <td><%= room.occupancy_limit %></td>
           <td><%= room.quantity %></td>
-          <td><%= room.price %></td>
+          <td><%= humanized_money_with_symbol room.price %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
-    <%= link_to t(".book_now"), new_location_reservation_path(@location), class: "genric-btn primary" %>
+    <% if params %>
+      <%= link_to t(".book_now"), new_location_reservation_path(@location, params.permit(q: {})), class: "genric-btn primary" %>
+    <% else %>
+      <%= link_to t(".book_now"), new_location_reservation_path(@location), class: "genric-btn primary" %>
+    <% end %>
   </div>
 </section>
 

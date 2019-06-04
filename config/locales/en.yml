@@ -9,6 +9,7 @@ en:
     create_unsuccess: "Create unsuccessful"
     room_updated: "Room updated"
     location_updated: "Location updated"
+    availability: "Please fill availability form!"
   time:
     formats:
       full: "%H:%M-%d/%m/%Y"
@@ -20,6 +21,10 @@ en:
     room:
       activated: "Activated"
       non_activated: "Non Activated"
+
+  services:
+    book_room:
+      check_number: "must be selected"
 
   layouts:
     admin:
@@ -395,6 +400,10 @@ en:
   locations:
     show:
       reviews: "Reviews"
+      room_name: "Room Type"
+      occupancy_limit: "Capacity"
+      price: "Price per Night"
+      quantity: "Quantity"
     index:
       popular_destinations: "Popular Destinations"
       we_all: "We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, day to."
@@ -428,8 +437,22 @@ en:
 
   reservations:
       create:
-        create_unsuccess: "Create unsuccessful!"
-        created: "Room created!"
+        created: "Book room success, You have 24 hours to pay the bill before being refused!"
+      form:
+        room_name: "Room Type"
+        occupancy_limit: "Capacity"
+        price_for: "Price for "
+        night: " Night"
+        select_rooms: "Select Rooms"
+        book_submit: "Book now"
+
+  reservation_details:
+    model:
+      valid_start_date: "is not valid"
+      valid_end_date: "is not valid"
+      valid_days: "must more than start date"
+      valid_room_ready: "is full"
+
 
   rooms:
     show:
@@ -474,4 +497,5 @@ en:
       roombooking: "RoomBooking"
     location_type:
       whatever_accommodations: "Whatever accommodations you’re looking for, we've got them..."
-
+    reservation:
+      rooms_for: " rooms for "

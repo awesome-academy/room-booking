@@ -31,6 +31,8 @@ gem "momentjs-rails"
 gem "bootstrap-daterangepicker-rails"
 gem "jquery-ui-rails"
 gem "material_design_icons"
+gem "money-rails", "~>1.12"
+gem "draper"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
