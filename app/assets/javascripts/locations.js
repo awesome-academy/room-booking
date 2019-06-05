@@ -14,5 +14,28 @@ $(document).ready(function() {
     });
     marker.setMap(map);
   }
+  initialize();
   google.maps.event.addDomListener(window, 'load', initialize);
+
+  function star_rating() {
+    $('#star-rating').raty({
+      path: '/assets/',
+      scoreName: 'review[rate]',
+    });
+  };
+
+  star_rating();
+
+  var review = $('#mydata1').data('review');
+  initializee(review);
+  function initializee(review) {
+    var i;
+    for (i = 0; i < review.length; i++) {
+      $('#stars_'+review[i].id).raty({
+        path: '/assets',
+        readOnly: true,
+        score: review[i].rate
+      });
+    }
+  }
 });

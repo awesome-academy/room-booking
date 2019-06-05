@@ -463,8 +463,11 @@ en:
       bedrooms: "Bedrooms"
       bathrooms: "Bathrooms"
       star_rating: "Star Rating"
+      stay_type: "Stay type"
     location_type:
       whatever_accommodations: "Whatever accommodations you’re looking for, we've got them..."
+    list_location:
+      see_availability: "See availability >"
 
   javascripts:
     locations:

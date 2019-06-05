@@ -4,6 +4,7 @@
     <%= render "layouts/meta" %>
     <title><%= full_title yield(:title) %></title>
     <%= render "layouts/style" %>
+    <%= render "layouts/js" %>
   </head>
 
   <body>
@@ -14,6 +15,5 @@
     <% end %>
     <%= yield %>
     <%= render "layouts/footer" %>
-    <%= render "layouts/js" %>
   </body>
 </html>

@@ -13,44 +13,8 @@
 
 <br>
 
-<div class="row ">
-  <div class="col-md-4 col-sm-12">
-    <a href="/search?utf8=%E2%9C%93&search=new+york">
-      <div class="discovery-card" style="background-image: url('/assets/New_York.jpg')">
-        <div class="va-container">
-          <div class="va-middle text-center">
-            <h2><strong><%= t ".new_york" %></strong></h2>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-md-4 col-sm-6">
-    <a href="/search?utf8=%E2%9C%93&search=london">
-      <div class="discovery-card" style="background-image: url('/assets/London.jpg')">
-        <div class="va-container">
-          <div class="va-middle text-center">
-            <h2><strong><%= t ".london" %></strong></h2>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-md-4 col-sm-6">
-    <a href="/search?utf8=%E2%9C%93&search=berlin">
-      <div class="discovery-card" style="background-image: url('/assets/Berlin.jpg')">
-        <div class="va-container">
-          <div class="va-middle text-center">
-            <h2><strong><%= t ".berlin" %></strong></h2>
-          </div>
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
-
+  <%= render "static_pages/list_location" %>
+  <%= paginate @locations %>
 <br>
   <%= render "static_pages/location_type" %>
 <br>
@@ -65,3 +29,5 @@
 <div class="row d-flex justify-content-center mb-4">
   <%= render "static_pages/location" %>
 </div>
+<%= content_tag :div, nil, id: "mydata", data: {location: @locations} %>
+<%= javascript_include_tag "list_location" %>
