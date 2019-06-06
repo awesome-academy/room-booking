@@ -4,13 +4,14 @@ class LocationsController < ApplicationController
   def index
     @search = ransack_params
     @locations = ransack_result
+    @locations = LocationDecorator.decorate @locations
   end
 
   def show; end
 
   private
   def set_location
-    @location = Location.find_by id: params[:id]
+    @location = Location.find_by(id: params[:id]).decorate
     return if @location
     flash[:error] = t(".location_not_found")
     redirect_to locations_path

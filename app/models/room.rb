@@ -1,5 +1,7 @@
 class Room < ApplicationRecord
-  include RoomDecorator
+  monetize :price_cents
+
+  attr_accessor :availability_rooms, :no_days
 
   has_many :rooms_services, dependent: :destroy
   has_many :services, through: :rooms_services
@@ -24,6 +26,7 @@ class Room < ApplicationRecord
     :created_at, :updated_at, pictures: [], services: []].freeze
 
   scope :by_location_id, -> (location_id){ where("location_id = ?", location_id) }
+
   scope :list, (lambda do
     select :id, :name, :occupancy_limit, :quantity, :price, :created_at,
       :updated_at, :status

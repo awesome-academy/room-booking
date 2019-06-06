@@ -1,6 +1,4 @@
 class Location < ApplicationRecord
-  include LocationDecorator
-
   has_many :reviews, dependent: :destroy
   has_many :rooms, dependent: :destroy
   has_many :images, as: :imageable, dependent: :destroy
@@ -33,9 +31,11 @@ class Location < ApplicationRecord
         JOIN
           (SELECT COUNT(*) AS c_a, room_id AS r_id
           FROM
-            (SELECT *
-            FROM `mini-booking`.reservation_details
-            WHERE start_date <= '#{Time.parse end_date}' AND end_date >= '#{Time.parse start_date}') AS ad_orders
+            (SELECT r_deltails.*
+            FROM `mini-booking`.reservation_details AS r_deltails
+            JOIN `mini-booking`.reservations AS resers
+            ON r_deltails.reservation_id = resers.id
+            WHERE r_deltails.start_date <= '#{Time.parse end_date}' AND r_deltails.end_date >= '#{Time.parse start_date}' AND resers.status <= 1) AS ad_orders
           GROUP BY room_id) AS room_right
         ON room_left.id = room_right.r_id
         GROUP BY room_left.location_id) AS location_right

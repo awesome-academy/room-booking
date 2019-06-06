@@ -1,34 +1,45 @@
 class ReservationsController < ApplicationController
-  before_action :load_reservations, only: %i(show)
   before_action :authenticate_user!, only: %i(create new)
+  before_action :must_have_availability_param
+
+  def index
+    redirect_to new_location_reservation_url(params.permit(q: {}))
+  end
+
   def create
     @book_room = BookRoom.new(reservations_params, current_user).book
-    if @book_room[:reservation].valid? && @book_room[:detail].valid?
-      flash[:success] = "Book room success!"
+    if @book_room[:reservation].errors.empty? && @book_room[:detail].errors.empty?
+      flash[:success] = t ".created"
       redirect_to request.referer
     else
       @reservation = @book_room[:reservation]
       @reservation_detail = @book_room[:detail]
-      @location = Location.find_by id: params[:location_id]
+      load_rooms
+      @rooms = RoomDecorator.decorate_collection @rooms
       render :new
     end
   end
 
   def new
-    @location = Location.find_by id: params[:location_id]
+    load_rooms
+    @rooms = RoomDecorator.decorate_collection @rooms
     @reservation = Reservation.new
     @reservation_detail = ReservationDetail.new
   end
 
   private
-  def load_reservations
-    @reservations = reservations.find_by id: params[:id]
-    return if @reservations
-    flash[:error] = t(".reservations_not_found")
-    redirect_to reservationss_url
+  def load_rooms
+    @location = Location.find_by id: params[:location_id]
+    @rooms = FindAvailabilityRooms.new(@location, params.permit(q: {})).all_records
   end
 
   def reservations_params
-    params.permit(room: {},location: [:id])
+    params.permit({room: {}}, {q: {}}, :location_id)
+  end
+
+  def must_have_availability_param
+    return true if params[:q]
+    flash[:warning] = t "flash.availability"
+    redirect_to locations_url
   end
 end

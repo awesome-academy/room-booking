@@ -103,7 +103,7 @@
           <form class="form-wrap">
             <div class="row">
               <div class="col-md-12 ">
-                <h2><span class="pull-left">$<%= @room.price %> </span></h2>
+                <h2><span class="pull-left"><%= humanized_money_with_symbol @room.price %></span></h2>
                 <h2><span class="pull-right"><%= t ".per_night" %></span></h2>
               </div>
             </div>
