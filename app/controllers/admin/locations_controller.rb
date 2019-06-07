@@ -3,7 +3,7 @@ class Admin::LocationsController < Admin::ApplicationController
 
   def index
     @locations = Location.order(:name)
-      .page(params[:page]).per Settings.controllers.admin.locations.pag
+      .page(params[:page]).per(Settings.controllers.admin.locations.pag).decorate
   end
 
   def search
@@ -34,7 +34,7 @@ class Admin::LocationsController < Admin::ApplicationController
   end
 
   def load_location
-    @location = Location.find_by id: params[:id]
+    @location = Location.find_by(id: params[:id]).decorate
     return if @location
     redirect_to admin_locations_url
   end

@@ -6,8 +6,8 @@ class LocationDecorator < ApplicationDecorator
   end
 
   def status_tag
-    return {name: t("decorators.location.activated"),class: "badge badge-success"} if status
-    {name: t("decorators.location.non_activated"),class: "badge badge-dark"}
+    return {name: I18n.t("decorators.location.activated"),class: "badge badge-success"} if status
+    {name: I18n.t("decorators.location.non_activated"),class: "badge badge-dark"}
   end
 
   def location_type_option

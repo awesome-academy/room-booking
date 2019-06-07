@@ -3,13 +3,13 @@ class Admin::UsersController < Admin::ApplicationController
 
   def index
     @users = User.order(:name).page(params[:page])
-      .per Settings.controllers.admin.users.pag
+      .per(Settings.controllers.admin.users.pag).decorate
   end
 
   def search
     @users = SearchService.new(User, search_params, Settings.search_fields.user)
       .all_records
-      .page(params[:page]).per Settings.controllers.admin.users.pag
+      .page(params[:page]).per(Settings.controllers.admin.users.pag).decorate
     render :index
   end
 
@@ -59,7 +59,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def load_user
-    @user = User.find_by id: params[:id]
+    @user = User.find_by(id: params[:id]).decorate
     return if @user
     redirect_to admin_users_url
   end

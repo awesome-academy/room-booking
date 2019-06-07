@@ -40,15 +40,6 @@ class Admin::LocationTypesController < Admin::ApplicationController
     end
   end
 
-  def destroy
-    if @location_type.destroy
-      flash[:success] = t ".destroy_success"
-    else
-      flash[:danger] = t ".destroy_fail"
-    end
-    redirect_to admin_location_types_url
-  end
-
   private
   def location_type_params
     params.require(:location_type).permit :name
