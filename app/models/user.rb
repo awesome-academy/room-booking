@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :confirmable
-  include UserDecorator
 
   has_many :reservations, dependent: :destroy
   has_many :reviews, dependent: :destroy
