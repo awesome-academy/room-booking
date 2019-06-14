@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :bills, only: %i(index show) do
+    post "pay", on: :member, to: "bills#pay"
+  end
+
   resources :location_types, only: %i(show)
 
   namespace :admin do
@@ -42,6 +46,7 @@ Rails.application.routes.draw do
     resources(:locations, only: %i(index show update)){get "search", on: :collection}
 
     root "static_pages#home"
+    post "get_data", to: "static_pages#get_data"
   end
 
   namespace :manager do
@@ -55,6 +60,8 @@ Rails.application.routes.draw do
         resources(:reservation_details, only: :index){get "search", on: :collection}
       end
       post "reservations", on: :member, to: "reservations#get_data"
+      post "get_data", on: :member, to: "locations#get_data"
+      post "get_data1", on: :member, to: "locations#get_data1"
     end
   end
 end

@@ -6,7 +6,7 @@ class Manager::ReviewsController < Manager::ApplicationController
 
   private
   def load_location
-    @location = Location.find_by id: params[:location_id]
+    @location = current_user.locations.find_by id: params[:location_id]
     return if @location
     flash[:error] = t(".location_not_found")
     redirect_to manager_locations_path

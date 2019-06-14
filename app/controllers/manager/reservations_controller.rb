@@ -26,7 +26,14 @@ class Manager::ReservationsController < Manager::ApplicationController
 
   private
   def load_location
-    @location = Location.find_by id: params[:location_id]
+    @location = current_user.locations.find_by id: params[:location_id]
+    return if @location
+    flash[:error] = t(".location_not_found")
+    redirect_to manager_locations_path
+  end
+
+  def load_location_json
+    @location = current_user.locations.find_by id: params[:id]
     return if @location
     flash[:error] = t(".location_not_found")
     redirect_to manager_locations_path

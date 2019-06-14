@@ -2,7 +2,7 @@ class Admin::LocationsController < Admin::ApplicationController
   before_action :load_location, only: %i(show update)
 
   def index
-    @locations = Location.order(:name)
+    @locations = Location.order(:status)
       .page(params[:page]).per(Settings.controllers.admin.locations.pag).decorate
   end
 

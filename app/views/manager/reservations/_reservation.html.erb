@@ -1,8 +1,14 @@
 <tr>
   <td><%= link_to reservation.id, manager_location_reservation_reservation_details_path(@location, reservation) %></td>
   <td><%= reservation.user.name %></td>
-  <td><%= reservation.total_bill %></td>
-  <td><%= link_to reservation.status_tag[:name], manager_location_reservation_path(@location, reservation), method: :patch, class: reservation.status_tag[:class] %></td>
+  <td><%= humanized_money_with_symbol reservation.total_bill %></td>
+  <td><%= label_tag nil, reservation.status_tag[:name], class: reservation.status_tag[:class] %></td>
   <td><%= l reservation.created_at, format: :full %></td>
   <td><%= l reservation.updated_at, format: :full %></td>
+  <td>
+    <% if reservation.status == 0%>
+      <%= link_to "refuse", manager_location_reservation_path(@location, reservation), method: :patch, class: "badge badge-danger" %>
+    <% end %>
+  </td>
 </tr>
+
