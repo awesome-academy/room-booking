@@ -1,5 +1,133 @@
 <%= provide :title, @location.name %>
+<%= provide :js, "manager/reservations" %>
+<div class="row">
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="mdi mdi-cube text-danger icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Rooms Booked</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0"><%= @reservations.size %></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="mdi mdi-receipt text-warning icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">New Booking</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0"><%= @reservations.where("created_at >= ? AND created_at < ?", 0.days.ago.to_date, (-1).day.ago.to_date).size %></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="mdi mdi-poll-box text-info icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Reviews</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0"><%= @reviews.size %></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+    <div class="card card-statistics">
+      <div class="card-body">
+        <div class="clearfix">
+          <div class="float-left">
+            <i class="mdi mdi-currency-usd text-success icon-lg"></i>
+          </div>
+          <div class="float-right">
+            <p class="mb-0 text-right">Total Earning</p>
+            <div class="fluid-container">
+              <h3 class="font-weight-medium text-right mb-0"><%= humanized_money_with_symbol @reservations.sum(:total_bill_cents)/100 %></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-md-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="card-title mb-0">Chart Survey</h2>
+        </div>
+        <%= content_tag :div, "", id: "reservations_chart", data: {reservations: @reservations} %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-5 d-flex align-items-center">
+            <canvas id="UsersDoughnutChart1" class="400x160 mb-4 mb-md-0" height="200">
+            </canvas>
+        </div>
+
+          <div class="col-md-7">
+            <h4 class="card-title font-weight-medium mb-0 d-none d-md-block">Room details</h4>
+            <% @location.rooms.each do |room| %>
+            <div class="wrapper mt-4">
+              <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex align-items-center">
+                  <p class="mb-0 font-weight-medium ml-2"><%= room.name %>:</p>
+                  <small class="text-muted ml-2"><%= humanized_money_with_symbol room.price %> per night</small>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-7">
+            <h4 class="card-title font-weight-medium mb-3">Amount Due</h4>
+            <h1 class="font-weight-medium mb-0">$5998</h1>
+            <p class="text-muted">Milestone Completed</p>
+            <p class="mb-0">Payment for next week</p>
+          </div>
+          <div class="col-md-5 d-flex align-items-end mt-4 mt-md-0">
+            <canvas id="conversionBarChart" height="150"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row grid-margin">
   <div class="col-lg-12">
     <div class="card">
@@ -14,7 +142,7 @@
         <address>
           <p>
             <i class="mdi mdi-map-marker">
-              <%= @location.national %>, <%= @location.location %>
+              <%= @location.national %>, <%= @location.address %>
             </i>
           </p>
         </address>

@@ -16,6 +16,7 @@ class Manager::RoomsController < Manager::ApplicationController
 
   def new
     @room = @location.rooms.new
+    @room = RoomDecorator.decorate @room
   end
 
   def create
@@ -52,8 +53,8 @@ class Manager::RoomsController < Manager::ApplicationController
   end
 
   def load_location
-    @location = Location.find_by(id: params[:location_id]).decorate
-    return if @location
+    @location = current_user.locations.find_by(id: params[:location_id])
+    return @location.decorate if @location
     flash[:error] = t(".location_not_found")
     redirect_to manager_locations_path
   end
